@@ -1,0 +1,55 @@
+name: app_orcamento
+description: A new Flutter project.
+
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.1.2 <4.0.0'
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  cupertino_icons: ^1.0.2
+  firebase_core: ^2.16.0
+  firebase_auth: ^4.10.0
+  get: ^4.6.6
+  cloud_firestore: ^4.9.3
+  json_annotation: ^4.8.1
+  freezed: ^2.4.3
+  freezed_annotation: ^2.4.1
+  firebase_database: ^10.2.7
+  rive: ^0.9.1
+  flutter_svg: ^1.1.6
+  flutter_snake_navigationbar: ^0.6.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  json_serializable: ^6.7.1
+  flutter_lints: ^2.0.0
+  build_runner: ^2.4.6
+
+
+flutter: 
+  uses-material-design: true
+
+  assets:
+    - assets/Backgrounds/
+    - assets/icons/
+    
+  fonts:
+    - family: Intel
+      fonts:
+        - asset: assets/Fonts/Inter-Regular.ttf
+        - asset: assets/Fonts/Inter-SemiBold.ttf
+          weight: 600
+    - family: Poppins
+      fonts:
+        - asset: assets/Fonts/Poppins-Bold.ttf
+          weight: 700
+
