@@ -28,7 +28,17 @@ class MyApp extends StatelessWidget {
       title: 'Budgets',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: CustomColors.customSwatchLightBlueColor,
+        inputDecorationTheme: InputDecorationTheme(
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: CustomColors
+                  .backgroundColor2, // Defina a cor padrão das bordas aqui
+              width: 1.0, // Defina a espessura padrão das bordas aqui
+            ),
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
+        primarySwatch: CustomColors.customBlueColor,
         scaffoldBackgroundColor: CustomColors.white,
       ),
       initialRoute: PagesRoutes.baseRoute,

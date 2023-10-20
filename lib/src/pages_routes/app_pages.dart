@@ -1,5 +1,6 @@
 import 'package:app_orcamento/src/Pages/base/binding/nagivation_binding.dart';
 import 'package:app_orcamento/src/Pages/base/view/base_screen.dart';
+import 'package:app_orcamento/src/Pages/client/view/client_screen.dart';
 import 'package:app_orcamento/src/Pages/home/view/home_tab.dart';
 import 'package:get/get.dart';
 
@@ -21,6 +22,10 @@ abstract class AppPages {
       page: () => const HomeTab(),
     ),
     GetPage(
+      name: PagesRoutes.clientRoute,
+      page: () => const ClientScreen(),
+    ),
+    GetPage(
       name: PagesRoutes.usersRoute,
       page: () => const UsersTab(),
       binding: UsersBinding(),
@@ -32,4 +37,5 @@ abstract class PagesRoutes {
   static const String baseRoute = '/';
   static const String homeTab = '/hometab';
   static const String usersRoute = '/usersroute';
+  static const String clientRoute = '/clientroute';
 }

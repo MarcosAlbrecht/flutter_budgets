@@ -1,7 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:app_orcamento/src/pages_routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app_orcamento/src/models/client_model.dart';
+import 'package:get/get.dart';
 
 import '../../../../Config/custom_colors.dart';
 
@@ -25,7 +27,12 @@ class _ClientTileState extends State<ClientTile> {
     return Stack(
       children: [
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Get.toNamed(
+              PagesRoutes.clientRoute,
+              arguments: {'client': widget.clientModel, 'mode': 'view'},
+            );
+          },
           child: Card(
             color: CustomColors.backgroundColorLight,
             elevation: 5,

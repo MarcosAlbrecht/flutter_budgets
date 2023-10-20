@@ -1,18 +1,5 @@
 import 'package:flutter/material.dart';
 
-Map<int, Color> _swatchBlueOpacity = {
-  50: const Color.fromRGBO(15, 29, 51, .1),
-  100: const Color.fromRGBO(15, 29, 51, .2),
-  200: const Color.fromRGBO(15, 29, 51, .3),
-  300: const Color.fromRGBO(15, 29, 51, .4),
-  400: const Color.fromRGBO(15, 29, 51, .5),
-  500: const Color.fromRGBO(15, 29, 51, .6),
-  600: const Color.fromRGBO(15, 29, 51, .7),
-  700: const Color.fromRGBO(15, 29, 51, .8),
-  800: const Color.fromRGBO(15, 29, 51, .9),
-  900: const Color.fromRGBO(15, 29, 51, 1),
-};
-
 Map<int, Color> _swatchLightBlueOpacity = {
   50: const Color.fromRGBO(0, 211, 54753, .1),
   100: const Color.fromRGBO(0, 211, 54753, .2),
@@ -26,10 +13,23 @@ Map<int, Color> _swatchLightBlueOpacity = {
   900: const Color.fromRGBO(0, 211, 54753, 1),
 };
 
+Map<int, Color> _swatchBlueOpacity = {
+  50: const Color.fromRGBO(68, 76, 128, .1),
+  100: const Color.fromRGBO(68, 76, 128, .2),
+  200: const Color.fromRGBO(68, 76, 128, .3),
+  300: const Color.fromRGBO(68, 76, 128, .4),
+  400: const Color.fromRGBO(68, 76, 128, .5),
+  500: const Color.fromRGBO(68, 76, 128, .6),
+  600: const Color.fromRGBO(68, 76, 128, .7),
+  700: const Color.fromRGBO(68, 76, 128, .8),
+  800: const Color.fromRGBO(68, 76, 128, .9),
+  900: const Color.fromRGBO(68, 76, 128, 1),
+};
+
 abstract class CustomColors {
   static Color customContrastColor = const Color(0x00d13027);
 
-  static Color customBlueColor = const Color.fromRGBO(15, 29, 51, 1);
+  //tatic Color customBlueColor = const Color.fromRGBO(15, 29, 51, 1);
 
   static Color customLightBlueColor = const Color(0x00d3d5e1);
 
@@ -52,6 +52,12 @@ abstract class CustomColors {
 
   static MaterialColor customSwatchLightBlueColor =
       MaterialColor(0x00d3d5e1, _swatchLightBlueOpacity);
+
+  static MaterialColor customSwatchBlackColor =
+      MaterialColor(0x000000, _swatchLightBlueOpacity);
+
+  static MaterialColor customBlueColor =
+      MaterialColor(0xFF444c80, _swatchBlueOpacity);
 }
 
 abstract class CustomFontSizes {
