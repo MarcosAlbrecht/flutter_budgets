@@ -14,6 +14,7 @@ class CustomTextField extends StatefulWidget {
   final GlobalKey<FormFieldState>? formFieldKey;
   final int minLines;
   final int maxLines;
+  final int? maxLength;
 
   final TextInputType textInputType;
   final String? Function(String?)? validator;
@@ -30,12 +31,13 @@ class CustomTextField extends StatefulWidget {
     this.initialValue,
     this.readOnly = false,
     this.formFieldKey,
+    this.minLines = 1,
+    this.maxLines = 1,
+    this.maxLength,
     this.textInputType = TextInputType.text,
     this.validator,
     this.onSaved,
     this.controller,
-    this.minLines = 1,
-    this.maxLines = 1,
   }) : super(key: key);
 
   @override
@@ -57,6 +59,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: TextFormField(
+        maxLength: widget.maxLength,
         minLines: widget.minLines,
         maxLines: widget.maxLines,
         key: widget.formFieldKey,

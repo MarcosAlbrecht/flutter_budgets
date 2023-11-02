@@ -77,6 +77,8 @@ class _ClientScreenState extends State<ClientScreen> {
                           children: [
                             //text first name
                             CustomTextField(
+                              readOnly: !controller.isInserting.value &&
+                                  !controller.isEditing.value,
                               initialValue: controller.clientModel.firstName,
                               label: "Primeiro nome",
                               icon: Icons.person,
@@ -88,6 +90,8 @@ class _ClientScreenState extends State<ClientScreen> {
                             ),
                             //text last name
                             CustomTextField(
+                              readOnly: !controller.isInserting.value &&
+                                  !controller.isEditing.value,
                               initialValue: controller.clientModel.lastName,
                               label: "Sobrenome",
                               icon: Icons.person,
@@ -99,6 +103,8 @@ class _ClientScreenState extends State<ClientScreen> {
                             ),
                             //text email
                             CustomTextField(
+                              readOnly: !controller.isInserting.value &&
+                                  !controller.isEditing.value,
                               initialValue: controller.clientModel.email,
                               label: "Email",
                               icon: Icons.email,
@@ -110,11 +116,14 @@ class _ClientScreenState extends State<ClientScreen> {
                             ),
                             //text phone
                             CustomTextField(
+                              readOnly: !controller.isInserting.value &&
+                                  !controller.isEditing.value,
                               initialValue: controller.clientModel.phone,
                               label: "Telefone",
                               icon: Icons.phone,
                               textInputType: TextInputType.phone,
                               validator: phoneValidator,
+                              maxLength: 11,
                               onSaved: (value) {
                                 controller.clientModel.phone = value.toString();
                               },
@@ -124,39 +133,43 @@ class _ClientScreenState extends State<ClientScreen> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 10),
-                    child: SizedBox(
-                      width: double.infinity,
-                      height: 50,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18),
+                  Visibility(
+                    visible: controller.isInserting.value ||
+                        controller.isEditing.value,
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 10),
+                      child: SizedBox(
+                        width: double.infinity,
+                        height: 50,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18),
+                            ),
+                            backgroundColor: CustomColors.customGreen,
                           ),
-                          backgroundColor: CustomColors.customGreen,
-                        ),
-                        onPressed: () async {
-                          FocusScope.of(context).unfocus();
-                          if (_formKey.currentState!.validate()) {
-                            _formKey.currentState!.save();
-                            await controller.handleSaveClient();
-                          } else {
-                            utilServices.showToast(
-                              message: 'Verifique os campos obrigatórios!',
-                            );
-                          }
-                        },
-                        child: controller.isSaving.value
-                            ? CircularProgressIndicator(
-                                color: CustomColors.customBlueColor,
-                              )
-                            : const Text(
-                                'Gravar Atendimento',
-                                style: TextStyle(
-                                  fontSize: 18,
+                          onPressed: () async {
+                            FocusScope.of(context).unfocus();
+                            if (_formKey.currentState!.validate()) {
+                              _formKey.currentState!.save();
+                              await controller.handleSaveClient();
+                            } else {
+                              utilServices.showToast(
+                                message: 'Verifique os campos obrigatórios!',
+                              );
+                            }
+                          },
+                          child: controller.isSaving.value
+                              ? CircularProgressIndicator(
+                                  color: CustomColors.customBlueColor,
+                                )
+                              : const Text(
+                                  'Salvar',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                  ),
                                 ),
-                              ),
+                        ),
                       ),
                     ),
                   ),
