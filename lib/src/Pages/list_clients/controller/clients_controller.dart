@@ -22,4 +22,8 @@ class ClientsController extends GetxController {
       error: (message) {},
     );
   }
+
+  void updateList(ClientModel clientModel) {
+    update();
+  }
 }

@@ -30,10 +30,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         inputDecorationTheme: InputDecorationTheme(
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: CustomColors
-                  .backgroundColor2, // Defina a cor padrão das bordas aqui
-              width: 1.0, // Defina a espessura padrão das bordas aqui
+            borderSide: const BorderSide(
+              color: CustomColors.backgroundColor2,
+              width: 1.0,
             ),
             borderRadius: BorderRadius.circular(20),
           ),

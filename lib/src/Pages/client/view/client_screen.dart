@@ -1,7 +1,11 @@
+import 'package:app_orcamento/src/Pages/client/controller/client_controller.dart';
 import 'package:app_orcamento/src/Pages/common_widgets/custom_text_field.dart';
+import 'package:app_orcamento/src/utils/validators.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../config/custom_colors.dart';
+import '../../../utils/utils_services.dart';
 
 class ClientScreen extends StatefulWidget {
   const ClientScreen({Key? key}) : super(key: key);
@@ -11,8 +15,12 @@ class ClientScreen extends StatefulWidget {
 }
 
 class _ClientScreenState extends State<ClientScreen> {
+  final utilServices = UtilServices();
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(80), // Altura da AppBar personalizada
@@ -49,20 +57,115 @@ class _ClientScreenState extends State<ClientScreen> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-          child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Container(
-          child: const Column(
-            children: [
-              CustomTextField(
-                label: "Primeiro nome",
-                icon: Icons.people_alt,
-              ),
-            ],
+      body: SizedBox(
+        width: size.width,
+        height: size.height,
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: GetBuilder<ClientController>(
+            builder: (controller) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
+                    child: SingleChildScrollView(
+                      physics: const BouncingScrollPhysics(),
+                      child: Form(
+                        key: _formKey,
+                        child: Column(
+                          children: [
+                            //text first name
+                            CustomTextField(
+                              initialValue: controller.clientModel.firstName,
+                              label: "Primeiro nome",
+                              icon: Icons.person,
+                              validator: fisrtNameValidator,
+                              onSaved: (value) {
+                                controller.clientModel.firstName =
+                                    value.toString();
+                              },
+                            ),
+                            //text last name
+                            CustomTextField(
+                              initialValue: controller.clientModel.lastName,
+                              label: "Sobrenome",
+                              icon: Icons.person,
+                              validator: lastNameValidator,
+                              onSaved: (value) {
+                                controller.clientModel.lastName =
+                                    value.toString();
+                              },
+                            ),
+                            //text email
+                            CustomTextField(
+                              initialValue: controller.clientModel.email,
+                              label: "Email",
+                              icon: Icons.email,
+                              textInputType: TextInputType.emailAddress,
+                              validator: emailValidator,
+                              onSaved: (value) {
+                                controller.clientModel.email = value.toString();
+                              },
+                            ),
+                            //text phone
+                            CustomTextField(
+                              initialValue: controller.clientModel.phone,
+                              label: "Telefone",
+                              icon: Icons.phone,
+                              textInputType: TextInputType.phone,
+                              validator: phoneValidator,
+                              onSaved: (value) {
+                                controller.clientModel.phone = value.toString();
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 10),
+                    child: SizedBox(
+                      width: double.infinity,
+                      height: 50,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18),
+                          ),
+                          backgroundColor: CustomColors.customGreen,
+                        ),
+                        onPressed: () async {
+                          FocusScope.of(context).unfocus();
+                          if (_formKey.currentState!.validate()) {
+                            _formKey.currentState!.save();
+                            await controller.handleSaveClient();
+                          } else {
+                            utilServices.showToast(
+                              message: 'Verifique os campos obrigatórios!',
+                            );
+                          }
+                        },
+                        child: controller.isSaving.value
+                            ? CircularProgressIndicator(
+                                color: CustomColors.customBlueColor,
+                              )
+                            : const Text(
+                                'Gravar Atendimento',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                ),
+                              ),
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
         ),
-      )),
+      ),
     );
   }
 }

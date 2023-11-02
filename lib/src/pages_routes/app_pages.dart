@@ -1,5 +1,6 @@
 import 'package:app_orcamento/src/Pages/base/binding/nagivation_binding.dart';
 import 'package:app_orcamento/src/Pages/base/view/base_screen.dart';
+import 'package:app_orcamento/src/Pages/client/binding/client_binding.dart';
 import 'package:app_orcamento/src/Pages/client/view/client_screen.dart';
 import 'package:app_orcamento/src/Pages/home/view/home_tab.dart';
 import 'package:get/get.dart';
@@ -24,6 +25,7 @@ abstract class AppPages {
     GetPage(
       name: PagesRoutes.clientRoute,
       page: () => const ClientScreen(),
+      binding: ClientBinding(),
     ),
     GetPage(
       name: PagesRoutes.usersRoute,

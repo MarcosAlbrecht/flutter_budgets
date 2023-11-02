@@ -25,6 +25,8 @@ dependencies:
   rive: ^0.9.1
   flutter_svg: ^1.1.6
   flutter_snake_navigationbar: ^0.6.1
+  uuid: ^3.0.6
+  fluttertoast: ^8.2.1
 
 dev_dependencies:
   flutter_test:

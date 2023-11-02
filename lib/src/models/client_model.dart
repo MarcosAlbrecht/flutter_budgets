@@ -4,9 +4,24 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'client_model.g.dart';
 
+//converter timestamp do firebase para datetime do dart
+// createdAt: (json['created_at'] as Timestamp?)?.toDate(),
+// updatedAt: (json['updated_at'] as Timestamp?)?.toDate(),
+
+//converter datetime do dart para timestamp do firebase
+// 'created_at': instance.createdAt != null
+//           ? Timestamp.fromDate(instance.createdAt!).toDate()
+//           : null,
+//       'updated_at': instance.updatedAt != null
+//           ? Timestamp.fromDate(instance.updatedAt!).toDate()
+//           : null,
+
 @JsonSerializable()
 class ClientModel {
-  String? id;
+  @JsonKey(name: 'id_client')
+  String? idClient;
+  @JsonKey(name: 'id_user')
+  String? idUser;
   @JsonKey(name: 'first_name')
   String? firstName;
   @JsonKey(name: 'last_name')
@@ -22,7 +37,8 @@ class ClientModel {
   @JsonKey(name: 'active')
   bool? active;
   ClientModel({
-    this.id,
+    this.idClient,
+    this.idUser,
     this.firstName,
     this.lastName,
     this.email,
@@ -39,6 +55,6 @@ class ClientModel {
 
   @override
   String toString() {
-    return 'ClientModel(id: $id, firstName: $firstName, lastName: $lastName, email: $email, phone: $phone, createdAt: $createdAt, updatedAt: $updatedAt, active: $active)';
+    return 'ClientModel(idClient: $idClient, idUser: $idUser, firstName: $firstName, lastName: $lastName, email: $email, phone: $phone, createdAt: $createdAt, updatedAt: $updatedAt, active: $active)';
   }
 }

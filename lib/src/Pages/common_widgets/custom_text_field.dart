@@ -69,10 +69,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
         validator: widget.validator,
         onSaved: widget.onSaved,
         decoration: InputDecoration(
-          labelStyle: TextStyle(
-            color: CustomColors.black,
-            fontSize: CustomFontSizes.fontSize14,
-          ),
           prefixIcon: widget.icon != null ? Icon(widget.icon) : null,
           suffixIcon: widget.isSecret
               ? IconButton(
@@ -87,9 +83,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 )
               : null,
           labelText: widget.label,
-          isDense: true,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
+          //isDense: true,
+          enabledBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.green, // Cor da linha de baixo quando não em foco
+              // Espessura da linha de baixo quando não em foco
+            ),
           ),
         ),
       ),

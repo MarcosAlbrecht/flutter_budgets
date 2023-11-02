@@ -46,6 +46,7 @@ abstract class CustomColors {
   static Color black = Colors.black;
   static Color background = Colors.white.withAlpha(190);
   static Color white = Colors.white;
+  static Color customGreen = Colors.green;
 
   static MaterialColor customSwatchBlueColor =
       MaterialColor(0x0F1D33, _swatchBlueOpacity);

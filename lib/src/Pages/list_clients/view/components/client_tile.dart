@@ -102,12 +102,15 @@ class _ClientTileState extends State<ClientTile> {
             child: Material(
               child: InkWell(
                 onTap: () {
-                  print("Clicou");
+                  Get.toNamed(
+                    PagesRoutes.clientRoute,
+                    arguments: {'client': widget.clientModel, 'mode': 'edit'},
+                  );
                 },
                 child: Ink(
                   height: 45,
                   width: 40,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: CustomColors.backgroundColor2,
                   ),
                   child: Icon(
