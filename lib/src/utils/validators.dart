@@ -29,7 +29,7 @@ String? fisrtNameValidator(String? name) {
 
 String? lastNameValidator(String? name) {
   if (name == null || name.isEmpty) {
-    return 'Digite seu sobre nome';
+    return 'Digite seu sobrenome';
   }
   return null;
 }
