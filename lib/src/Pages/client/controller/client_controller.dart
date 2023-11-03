@@ -17,7 +17,7 @@ class ClientController extends GetxController {
   RxBool isEditing = false.obs;
   RxBool isSaving = false.obs;
 
-  final _uuid = Uuid();
+  final uuid = const Uuid();
   final UtilServices utilServices = UtilServices();
 
   @override
@@ -36,7 +36,6 @@ class ClientController extends GetxController {
         isEditing = true.obs;
         break;
       case "insert":
-        clientModel = ClientModel();
         isInserting = true.obs;
         break;
       default:
@@ -54,7 +53,7 @@ class ClientController extends GetxController {
     if (isEditing.value) {
       clientModel.updatedAt = DateTime.now();
       final result = await clientRepository.updateClient(
-          userID: clientModel.idClient!, clientToUpdate: clientModel);
+          userID: "pU5C8w4JXxMKGdN7Gy2U", clientToUpdate: clientModel);
       result.when(
         success: (data) {
           clientsController.update();
@@ -67,6 +66,29 @@ class ClientController extends GetxController {
       );
     }
 
+    if (isInserting.value) {
+      clientModel.updatedAt = DateTime.now();
+      clientModel.createdAt = DateTime.now();
+      clientModel.idUser =
+          "pU5C8w4JXxMKGdN7Gy2U"; //alterar quando tiver estado do usuario
+      clientModel.idClient = uuid.v4();
+      clientModel.active = true;
+      final result = await clientRepository.insertClient(
+          userID: "pU5C8w4JXxMKGdN7Gy2U", clientToUpdate: clientModel);
+      result.when(
+        success: (data) {
+          clientsController.updateListNewClient(clientModel);
+          utilServices.showToast(message: "Cliente inserido com sucesso!");
+        },
+        error: (message) {
+          utilServices.showToast(
+              message: "Ocorreu um erro ao inserir!", isError: true);
+        },
+      );
+    }
+
+    isInserting = false.obs;
+    isEditing = true.obs;
     setSaving(false);
   }
 }

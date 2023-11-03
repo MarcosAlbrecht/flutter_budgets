@@ -81,6 +81,7 @@ class _ProfileScreenState extends State<UsersTab> {
                 builder: (controller) {
                   return Expanded(
                     child: ListView.separated(
+                      physics: const BouncingScrollPhysics(),
                       itemBuilder: (_, int index) {
                         return ClientTile(
                           clientModel: controller.allClients[index],

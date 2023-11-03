@@ -23,7 +23,16 @@ class ClientsController extends GetxController {
     );
   }
 
-  void updateList(ClientModel clientModel) {
+  void updateList(ClientModel client) {
+    update();
+  }
+
+  void updateListNewClient(ClientModel client) {
+    List<ClientModel> clients = [];
+    clients.addAll(allClients);
+    clients.add(client);
+    allClients = clients;
+
     update();
   }
 }
