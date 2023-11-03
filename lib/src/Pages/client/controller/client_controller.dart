@@ -36,6 +36,7 @@ class ClientController extends GetxController {
         isEditing = true.obs;
         break;
       case "insert":
+        clientModel = ClientModel();
         isInserting = true.obs;
         break;
       default:
