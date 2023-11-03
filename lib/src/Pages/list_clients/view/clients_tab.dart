@@ -4,6 +4,7 @@ import 'package:app_orcamento/src/Pages/list_clients/view/components/client_tile
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../pages_routes/app_pages.dart';
 import '../controller/clients_controller.dart';
 
 class UsersTab extends StatefulWidget {
@@ -36,6 +37,17 @@ class _ProfileScreenState extends State<UsersTab> {
             ),
           ),
           child: AppBar(
+            actions: [
+              IconButton(
+                icon: Icon(Icons.person_add_alt),
+                onPressed: () {
+                  Get.toNamed(
+                    PagesRoutes.clientRoute,
+                    arguments: {'client': null, 'mode': 'insert'},
+                  );
+                },
+              ),
+            ],
             backgroundColor: Colors
                 .transparent, // Define o fundo da AppBar como transparente
             centerTitle: true, // Centraliza o título
